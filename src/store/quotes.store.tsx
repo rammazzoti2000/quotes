@@ -5,7 +5,7 @@ import { IQuotes } from "../models/IQuotes.model";
 class QuotesStore {
   rootStore;
 
-  quotes: IQuotes | [] = [];
+  quotes: object[] = [];
 
   constructor(rootStore: any) {
     makeAutoObservable(this);
@@ -14,9 +14,14 @@ class QuotesStore {
   }
 
   async getQuotes() {
-    const response = await firestore.collection('quotes').onSnapshot(snapshot => snapshot.docs.map(doc => doc.data()));
-
-    console.log(response);
+   try {
+    await firestore.collection('quotes').onSnapshot(snapshot => {
+      const quotes = snapshot.docs.map(doc => doc.data());
+      this.quotes = quotes;
+    });
+   } catch (error: any) {
+     console.log(error.message)
+   }
   }
 }
 

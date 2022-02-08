@@ -25,11 +25,9 @@ const App = () => {
     });
   }
 
-  console.log({ comments, quotes })
-  console.log({ unsubscribeFromCommentsFirestore });
+  // console.log({ comments, quotes })
 
   useEffect(() => {
-    console.log('use effect')
     getComments()
     getQuotes()
   }, [unsubscribeFromQuotesFirestore, unsubscribeFromCommentsFirestore]) // eslint-disable-line react-hooks/exhaustive-deps
