@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Footer } from './Components/Footer';
+import { Header } from './Components/Header';
+import { Quotes } from './Pages/Quotes';
 import { firestore } from './utilities/firebase';
 
 const App = () => {
@@ -31,7 +34,9 @@ const App = () => {
 
   return (
     <div className="App">
-      Quotes
+      <Header />
+      <Quotes />
+      <Footer />
     </div>
   );
 }
