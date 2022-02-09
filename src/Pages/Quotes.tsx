@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
+import { AddQuote } from "../Components/AddQuote";
 import { Quote } from "../Components/Quote";
 import { useStore } from "../store";
 
@@ -11,6 +12,9 @@ export const Quotes = observer(() => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Quote />
-  );
+    <section className="Quotes">
+      <AddQuote />
+      <Quote />
+    </section>
+    );
 });
