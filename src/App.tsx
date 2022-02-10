@@ -25,7 +25,7 @@ const App = () => {
     });
   }
 
-  console.log({comments, quotes})
+  // console.log({ comments, quotes })
 
   useEffect(() => {
     getComments()
