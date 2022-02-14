@@ -1,6 +1,8 @@
 import moment from "moment";
 import React from "react";
 
+import './Quote.scss';
+
 interface IProps {
   quote: {
     authorId: number;
