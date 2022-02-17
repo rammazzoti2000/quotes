@@ -38,13 +38,13 @@
   }
 
   &__details-header-headshot {
-    width: 40px;
+    width: 30px;
     border-radius: 50%;
     margin-right: 8px;
   }
 
   &__details-header-reply {
-    color: #5959b9;
+    color: $scampi;
     cursor: pointer;
     align-items: flex-end;
   }
