@@ -10,10 +10,10 @@ export const QuotesList = observer(() => {
   console.log(JSON.parse(JSON.stringify(quotes)))
 
   return (
-    <>
+    <div className="quotes-list">
       {quotes.map((quote, index) => (
         <Quote quote={quote} key={index} />
       ))}
-    </>
+    </div>
   );
 });

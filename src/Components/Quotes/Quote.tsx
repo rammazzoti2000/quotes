@@ -38,10 +38,10 @@ export const Quote = ({ quote } : IProps) => {
             </div>
             <span className="quotes-wrapper__details-header-user-timestamp">{moment(quote.created.toDate(), "YYYYMMDD").fromNow()}</span>
           </div>
-          <div className="quote-wrapper__details-header-reply">
+          <p className="quote-wrapper__details-header-reply">
             <img src={replyIcon} alt="reply back" className="quote-wrapper__details-header-reply-img" />
             Reply
-          </div>
+          </p>
         </div>
         <div className="quote-wrapper__body">{quote.body}</div>
       </div>

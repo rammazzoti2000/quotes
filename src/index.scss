@@ -1,9 +1,17 @@
+@import './assets/styles/main.scss';
+
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100vh;
+  height: auto;
 }
 
 #root {
-  background-color: #f5f6fa;
+  background-color: $body-bg;
+}
+
+html * {
+  font-family: $rubik;
+  font-size: 14px;
 }

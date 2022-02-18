@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik');
+
 // Font stack
-$sans-serif: "Source Sans Pro", Helvetica, Verdana, sans-serif;
+$sans-serif: Helvetica, Verdana, sans-serif;
+$rubik: 'Rubik', sans-serif;
 
 $light: 300;
 $normal: 400;
 $semibold: 500;
 $bold: 700;
+$bolder: 900;
 
 // Colors
 $white: #fff;
 $body-bg: #f5f6fa;
-$txt-primary: #8e9297;
+$txt-primary: #6e6e6e;
 $txt-primary-bold: #40424c;
 $scampi: #60629a;
 $burnt-sienna: #ec6867;
