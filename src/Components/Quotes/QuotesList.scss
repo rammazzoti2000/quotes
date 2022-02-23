@@ -1,0 +1,22 @@
+.quotes-list {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(1, 100%);
+  grid-gap: 26px;
+  width: 90%;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+@media only screen and (min-width: 840px) {
+  .quotes-list {
+    grid-template-columns: repeat(2, 48%);
+  }
+}
+
+@media only screen and (min-width: 1250px) {
+  .quotes-list {
+    grid-template-columns: repeat(3, 32%);
+  }
+}

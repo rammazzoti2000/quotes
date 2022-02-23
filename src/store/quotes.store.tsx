@@ -1,10 +1,12 @@
 import { makeAutoObservable } from "mobx"
-import { firestore } from '../utilities/firebase';
+import { IQuote } from "../models/quote.model";
+import { firestore as fireStore } from '../utilities/firebase';
 
 class QuotesStore {
   rootStore;
 
-  quotes: object[] = [];
+  quotes: IQuote[] | [] = [];
+  comments: object[] = [];
 
   constructor(rootStore: any) {
     makeAutoObservable(this);
@@ -14,8 +16,8 @@ class QuotesStore {
 
   async getQuotes() {
     try {
-      firestore.collection('quotes').onSnapshot(snapshot => {
-        const quotes = snapshot.docs.map(doc => doc.data());
+      fireStore.collection('quotes').onSnapshot(snapshot => {
+        const quotes: any = snapshot.docs.map(doc => doc.data());
         this.quotes = quotes;
       });
     } catch (error: any) {
@@ -23,9 +25,21 @@ class QuotesStore {
     }
   }
 
+  // async getComments() {
+  //   try {
+  //     fireStore.collection('comments').onSnapshot(snapshot => {
+  //       const comments = snapshot.docs.map(doc => doc.data());
+  //       console.log(snapshot)
+  //       this.comments = comments;
+  //     });
+  //   } catch (error: any) {
+  //     console.log(error.message)
+  //   }
+  // }
+
   async setQuote(quote: any) {
     try {
-      await firestore.collection('quotes').doc(quote.id).set(quote);
+      await fireStore.collection('quotes').doc(quote.id).set(quote);
     } catch (error: any) {
       console.log(error.message)
     }

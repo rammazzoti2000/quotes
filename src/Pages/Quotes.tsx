@@ -1,8 +1,9 @@
-import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { AddQuote } from "../Components/AddQuote";
-import { Quote } from "../Components/Quote";
+import { observer } from "mobx-react-lite";
 import { useStore } from "../store";
+
+import { AddQuote } from "../Components/AddQuote";
+import { QuotesList } from "../Components/Quotes/QuotesList";
 
 export const Quotes = observer(() => {
   const { quotesStore } = useStore();
@@ -14,7 +15,7 @@ export const Quotes = observer(() => {
   return (
     <section className="Quotes">
       <AddQuote />
-      <Quote />
+      <QuotesList />
     </section>
     );
 });
