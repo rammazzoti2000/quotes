@@ -1,0 +1,41 @@
+@import '../../assets/styles/main.scss';
+
+.quotes-header {
+  position: fixed;
+  top: 0;
+  bottom: auto;
+  z-index: 9999;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  box-shadow: 0px 4px 5px -3px rgb(0 0 0 / 50%);
+  background-color: $scampi;
+
+  &__user {
+    font-size: 20px;
+    font-weight: $bold;
+    color: white;
+  }
+
+  &__create-quote-btn {
+    padding: 8px 12px;
+    color: $scampi;
+    background-color: $body-bg;
+    font-size: 15px;
+    font-weight: $bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px 3px rgb(0 0 0 / 12%);
+
+    &:hover {
+      background-color: $greyish-blue;
+      color: rgb(49, 28, 56);
+    }
+  }
+}

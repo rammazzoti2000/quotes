@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Footer } from './Components/Footer';
-import { Header } from './Components/Header';
+import { Footer } from './Components/Footer/Footer';
+import { Header } from './Components/Header/Header';
 import { Quotes } from './Pages/Quotes';
 import { firestore } from './utilities/firebase';
 

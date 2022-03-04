@@ -14,7 +14,7 @@ export const Quotes = observer(() => {
 
   return (
     <section className="Quotes">
-      <AddQuote />
+      {/* <AddQuote /> */}
       <QuotesList />
     </section>
     );
