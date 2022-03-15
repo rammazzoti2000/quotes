@@ -49,7 +49,7 @@ export const Header = () => {
     // }
 
     if (quoteBody.trim() === '') {
-      tempError.author = 'Please fill in Quote.';
+      tempError.quoteBody = 'Please fill in Quote.';
       shouldDisplay = true;
     }
 
@@ -92,29 +92,29 @@ export const Header = () => {
         Add Quote
       </button>
       <CustomModal show={showModal} handleClose={handleCloseModal}>
-        <div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <div className="quotes-modal__inputs">
-              <label>
-                Author
-                  <input type="text" value={author} onChange={handleChangeAuthor} />
-                  <span className="quotes-modal__field-error">
-                    {displayError && error.author}
-                  </span>
-              </label>
-              <label>
-                Quote
-                <input type="text" value={quoteBody} onChange={handleChangeQuote} />
-                <span className="quotes-modal__field-error">
-                  {displayError && error.quoteBody}
-                </span>
-              </label>
-            </div>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
-        </div>
+        <form onSubmit={handleSubmit} className="quotes-modal__form">
+          <div className="quotes-modal__inputs">
+            <label>
+              Author
+              <input type="text" value={author} onChange={handleChangeAuthor} />
+              <br />
+              <span className="quotes-modal__field-error">
+                {error.author}
+              </span>
+            </label>
+            <br />
+            <label>
+              Quote
+              <input type="text" value={quoteBody} onChange={handleChangeQuote} />
+              <br />
+              <span className="quotes-modal__field-error">
+                {error.quoteBody}
+              </span>
+            </label>
+          </div>
+          <br />
+          <input type="submit" value="Submit" />
+        </form>
       </CustomModal>
     </header>
   );
