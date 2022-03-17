@@ -121,6 +121,8 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       setHashtags(prevState => [...prevState, trimmedInput]);
       setHashtagInput('');
     }
+
+    cleanErrors();
   };
 
   const handleRemoveHashtag = (tag: string) => {
@@ -171,6 +173,10 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
               onChange={handleChangeHashtags}
               onKeyDown={onHashtagKeyDown}
             />
+            <br />
+            <span className="quotes-modal__field-error">
+              {(displayError && error.hashtagInput)}
+            </span>
             <div className="hashtags-wrap">
               {(hashtags || []).map((tag) =>
                 <div className="hashtags-wrap__tag">
@@ -179,10 +185,6 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
                 </div>
               )}
             </div>
-            <br />
-            <span className="quotes-modal__field-error">
-              {(displayError && error.hashtagInput)}
-            </span>
           </label>
         </div>
         <br />
