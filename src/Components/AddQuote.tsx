@@ -58,7 +58,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       shouldDisplay = true;
     }
 
-    if (hashtagInput.trim() === '' && !hashtags) {
+    if (hashtagInput.trim() === '' && !hashtags.length) {
       tempError.hashtagInput = 'Please add at least on hashtag.';
       shouldDisplay = true;
     }
@@ -95,6 +95,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
 
   const handleChangeHashtags = (event: any) => {
     setHashtagInput(event.target.value);
+    cleanErrors();
   }
 
   const onHashtagKeyDown = (event: any) => {
@@ -165,7 +166,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
               </div>)}
             <br />
             <span className="quotes-modal__field-error">
-              {(!hashtags.length && displayError && error.hashtagInput)}
+              {(displayError && error.hashtagInput)}
             </span>
           </label>
         </div>
