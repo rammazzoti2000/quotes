@@ -9,8 +9,6 @@ export const Header = () => {
     setShowModal(!showModal)
   }
 
-  
-
   return (
     <header className="quotes-header">
       <div className="quotes-header__user">Alexandru</div>

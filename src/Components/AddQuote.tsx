@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useStore } from "../store";
 import { CustomModal } from "./CustomModal/CustomModal";
 
@@ -9,14 +9,12 @@ interface IProps {
 };
 
 export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) => {
-  const [body, setBody] = useState('');
-
   const [author, setAuthor] = useState('');
   const [hashtagInput, setHashtagInput] = useState('');
   const [hashtags, setHashtags] = useState<string[]>([]);
   const [quoteBody, setQuoteBody] = useState('');
-  const [displayError, setDisplayError] = useState(false);
 
+  const [displayError, setDisplayError] = useState(false);
   const [error, setError] = useState({
     author: '',
     hashtagInput: '',
@@ -40,32 +38,9 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     setQuoteBody('');
   };
 
-  // const handleChange = (event: any) => {
-  //   const { value } = event.target;
-  //   setBody(value);
-  // }
-
-  // const handleSubmit = async (event: any) => {
-  //   event.preventDefault();
-
-  //   const quote: any = {
-  //     authorId: 2,
-  //     authorName: 'maxinova',
-  //     body,
-  //     comments: 0,
-  //     created: new Date(),
-  //     hashtags: ['first', 'testing'],
-  //     likes: 0,
-  //     role: 'user',
-  //     updated: new Date()
-  //   }
-
-  //   quotesStore.setQuote(quote);
-  //   setBody('');
-  // }
-
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
     let shouldDisplay = false;
     const tempError = {
       author: '',
@@ -83,7 +58,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       shouldDisplay = true;
     }
 
-    if (hashtagInput.trim() === '') {
+    if (hashtagInput.trim() === '' && !hashtags) {
       tempError.hashtagInput = 'Please add at least on hashtag.';
       shouldDisplay = true;
     }
@@ -93,6 +68,24 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       setDisplayError(true);
       return;
     }
+
+    const quote: any = {
+      authorId: 2,
+      authorName: author,
+      body: quoteBody,
+      comments: 0,
+      created: new Date(),
+      hashtags,
+      likes: 0,
+      role: 'user',
+      updated: new Date()
+    }
+
+    await quotesStore.setQuote(quote);
+    cleanData();
+    cleanErrors();
+    setHashtags([]);
+    setShowModal(false);
   };
 
   const handleChangeAuthor = (event: any) => {
@@ -132,20 +125,10 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     setShowModal(false);
     cleanData();
     cleanErrors();
-    setHashtags([])
+    setHashtags([]);
   }
 
   return (
-    // <form onSubmit={handleSubmit} className="AddQuote">
-    //   <input
-    //     type="text"
-    //     name="body"
-    //     placeholder="Content"
-    //     value={body}
-    //     onChange={handleChange}
-    //   />
-    //   <input className="create" type="submit" value="Add Quote" />
-    // </form>
     <CustomModal show={showModal} handleClose={handleCloseModal}>
       <form onSubmit={handleSubmit} className="quotes-modal__form">
         <div className="quotes-modal__inputs">

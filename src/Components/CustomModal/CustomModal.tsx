@@ -2,7 +2,7 @@ import React from "react";
 import './CustomModal.scss';
 
 interface IProps {
-  handleClose: Function;
+  handleClose: () => void;
   show: boolean;
   children: React.ReactNode;
 }
@@ -17,7 +17,7 @@ export const CustomModal = ({ handleClose, show = false, children }: IProps) => 
         className="modal-backdrop__content"
         onClick={e => e.stopPropagation()}
       >
-        <button onClick={() => handleClose()}>Close</button>
+        <button onClick={handleClose}>x</button>
         {children}
       </div>
     </div>
