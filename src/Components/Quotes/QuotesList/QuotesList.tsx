@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../store";
-import { Quote } from "./Quote";
+import { useStore } from "../../../store";
+import { Quote } from "../Quote/Quote";
 import './QuotesList.scss';
 
 export const QuotesList = observer(() => {

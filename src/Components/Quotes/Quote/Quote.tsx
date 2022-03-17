@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 
-import headshotImg from '../../assets/images/png/headshot.png';
-import replyIcon from '../../assets/images/svg/reply.svg';
+import headshotImg from '../../../assets/images/png/headshot.png';
+import replyIcon from '../../../assets/images/svg/reply.svg';
 
 import './Quote.scss';
 

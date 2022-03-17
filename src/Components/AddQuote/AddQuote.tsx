@@ -1,7 +1,9 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { useStore } from "../store";
-import { CustomModal } from "./CustomModal/CustomModal";
+import { useStore } from "../../store";
+import { CustomModal } from "../CustomModal/CustomModal";
+
+import './AddQuote.scss';
 
 interface IProps {
   showModal: boolean;
@@ -63,6 +65,16 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       shouldDisplay = true;
     }
 
+    if (!hashtags.length && hashtagInput.trim() !== '') {
+      tempError.hashtagInput = "Type ' , ' or press 'Enter' key to save the hashtag.";
+      shouldDisplay = true;
+    }
+
+    if (hashtagInput.trim() !== '') {
+      tempError.hashtagInput = "Type ' , ' or press 'Enter' key to save the hashtag.";
+      shouldDisplay = true;
+    }
+
     if (shouldDisplay) {
       setError(tempError);
       setDisplayError(true);
@@ -111,7 +123,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     }
   };
 
-  const handleRemoveHashtag = (event: any, tag: string) => {
+  const handleRemoveHashtag = (tag: string) => {
     setHashtags(prev => {
       return prev.filter(item => item !== tag);
     });
@@ -159,11 +171,14 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
               onChange={handleChangeHashtags}
               onKeyDown={onHashtagKeyDown}
             />
-            {(hashtags || []).map((tag) =>
-              <div className="tag">
-                <span onClick={(event) => handleRemoveHashtag(event, tag)}>x {''}</span>
-                {tag}
-              </div>)}
+            <div className="hashtags-wrap">
+              {(hashtags || []).map((tag) =>
+                <div className="hashtags-wrap__tag">
+                  <span className="hashtags-wrap__delete-tag" onClick={() => handleRemoveHashtag(tag)}>x</span>
+                  {tag}
+                </div>
+              )}
+            </div>
             <br />
             <span className="quotes-modal__field-error">
               {(displayError && error.hashtagInput)}

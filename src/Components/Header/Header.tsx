@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AddQuote } from "../AddQuote";
+import { AddQuote } from "../AddQuote/AddQuote";
 import './Header.scss';
 
 export const Header = () => {

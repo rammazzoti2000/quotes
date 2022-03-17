@@ -1,0 +1,26 @@
+@import '../../assets/styles/main.scss';
+
+.hashtags-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px;
+
+  &__tag {
+    padding: 0 3px 0 0;
+    margin-right: 5px;
+    background-color: $greyish-blue;
+    border: 1px solid;
+    border-radius: 3px;
+  }
+
+  &__delete-tag {
+    padding: 0 3px;
+    margin-right: 3px;
+    border-right: 1px solid;
+    cursor: pointer;
+    background: $body-bg;
+    border-radius: 2.5px 0 0 2.5px;
+  }
+}
