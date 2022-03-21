@@ -1,3 +1,5 @@
+@import '../../assets/styles/main.scss';
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -11,9 +13,26 @@
   z-index: 2;
 
   &__content {
+    position: relative;
     max-width: fit-content;
     min-height: 200px;
     background-color: white;
     padding: 25px;
+    border-radius: 5px;
+  }
+
+  &__header {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: $scampi;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  &__close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    left: auto;
   }
 }

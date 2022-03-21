@@ -144,7 +144,11 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
   }
 
   return (
-    <CustomModal show={showModal} handleClose={handleCloseModal}>
+    <CustomModal
+      title="Add new quote"
+      show={showModal}
+      handleClose={handleCloseModal}
+    >
       <form onSubmit={handleSubmit} className="quotes-modal__form">
         <div className="quotes-modal__inputs">
           <label>
@@ -158,7 +162,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
           <br />
           <label>
             Quote
-            <input type="text" value={quoteBody} onChange={handleChangeQuote} />
+            <textarea value={quoteBody} onChange={handleChangeQuote} />
             <br />
             <span className="quotes-modal__field-error">
               {displayError && error.quoteBody}
