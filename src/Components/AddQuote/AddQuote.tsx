@@ -61,7 +61,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     }
 
     if (hashtagInput.trim() === '' && !hashtags.length) {
-      tempError.hashtagInput = 'Please add at least on hashtag.';
+      tempError.hashtagInput = 'Please add at least one hashtag.';
       shouldDisplay = true;
     }
 
@@ -149,50 +149,61 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       show={showModal}
       handleClose={handleCloseModal}
     >
-      <form onSubmit={handleSubmit} className="quotes-modal__form">
-        <div className="quotes-modal__inputs">
-          <label>
-            Author
-            <input type="text" value={author} onChange={handleChangeAuthor} />
-            <br />
-            <span className="quotes-modal__field-error">
+      <form onSubmit={handleSubmit} className="modal-form">
+        <div className="modal-form__inputs">
+          <div className="modal-form__input-container">
+            <input
+              type="text"
+              value={author}
+              onChange={handleChangeAuthor}
+            />
+            <label className={author && 'filled'}>
+              Author
+            </label>
+            <span className="modal-form__field-error">
               {displayError && error.author}
             </span>
-          </label>
-          <br />
-          <label>
-            Quote
-            <textarea value={quoteBody} onChange={handleChangeQuote} />
-            <br />
-            <span className="quotes-modal__field-error">
+          </div>
+
+          <div className="modal-form__input-container">
+            <textarea
+              value={quoteBody}
+              onChange={handleChangeQuote}
+              rows={5} cols={33}
+            />
+            <label className={quoteBody && 'filled'}>
+              Quote
+            </label>
+            <span className="modal-form__field-error">
               {displayError && error.quoteBody}
             </span>
-          </label>
-          <br />
-          <label>
-            Hashtags
+          </div>
+
+          <div className="modal-form__input-container">
             <input
               type="text"
               value={hashtagInput}
               onChange={handleChangeHashtags}
               onKeyDown={onHashtagKeyDown}
             />
-            <br />
-            <span className="quotes-modal__field-error">
-              {(displayError && error.hashtagInput)}
-            </span>
-            <div className="hashtags-wrap">
-              {(hashtags || []).map((tag) =>
-                <div className="hashtags-wrap__tag">
-                  <span className="hashtags-wrap__delete-tag" onClick={() => handleRemoveHashtag(tag)}>x</span>
-                  {tag}
-                </div>
-              )}
-            </div>
-          </label>
+            <label className={hashtagInput && 'filled'}>
+              Hashtags
+            </label>
+            <span className="modal-form__field-error">
+                {(displayError && error.hashtagInput)}
+              </span>
+              <div className="hashtags-wrap">
+                {(hashtags || []).map((tag) =>
+                  <div className="hashtags-wrap__tag">
+                    <span className="hashtags-wrap__delete-tag" onClick={() => handleRemoveHashtag(tag)}>x</span>
+                    {tag}
+                  </div>
+                )}
+              </div>
+          </div>
         </div>
-        <br />
-        <input type="submit" value="Submit" />
+
+        <input type="submit" value="Submit" className="modal-form__submit" />
       </form>
     </CustomModal>
   );

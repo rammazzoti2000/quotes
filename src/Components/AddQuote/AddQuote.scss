@@ -1,26 +1,97 @@
 @import '../../assets/styles/main.scss';
 
-.hashtags-wrap {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 5px;
+.modal-form {
+  &__input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px;
 
-  &__tag {
-    padding: 0 3px 0 0;
-    margin-right: 5px;
-    background-color: $greyish-blue;
-    border: 1px solid;
-    border-radius: 3px;
+    &:focus-within label {
+      transform: translate(-5px, 10px) scale(0.8);
+      color: #0a53e4;
+    }
+
+    label {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(0, 30px) scale(1);
+      transform-origin: top left;
+      transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      color: #6f81a5;
+      font-size: 16px;
+      line-height: 1;
+      left: 5px;
+      top: -23px;
+    }
+  
+    input, textarea {
+      border: none;
+      border-bottom: 2px solid $scampi;
+      padding: 0 5px 4px;
+      font-size: 16px;
+      line-height: 1;
+      outline: none;
+      box-shadow: none;
+      transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      background-color: $body-bg;
+    }
+
+    input {
+      height: 30px;
+    }
+
+    textarea {
+      height: 60px;
+      resize: none;
+      padding-top: 5px;
+    }
+  
+    .filled {
+      transform: translate(-5px, 10px) scale(0.8);
+    }
   }
 
-  &__delete-tag {
-    padding: 0 3px;
-    margin-right: 3px;
-    border-right: 1px solid;
+  .hashtags-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+  
+    &__tag {
+      padding: 0 3px 0 0;
+      margin-right: 5px;
+      background-color: $greyish-blue;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+  
+    &__delete-tag {
+      padding: 0 3px;
+      margin-right: 3px;
+      border-right: 1px solid;
+      cursor: pointer;
+      background: $body-bg;
+      border-radius: 2.5px 0 0 2.5px;
+    }
+  }
+
+  &__field-error {
+    color: $burnt-sienna;
+    margin-top: 2px;
+  }
+
+  &__submit {
+    padding: 8px 12px;
+    color: $body-bg;
+    font-size: 15px;
     cursor: pointer;
-    background: $body-bg;
-    border-radius: 2.5px 0 0 2.5px;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 6px 2px rgb(0 0 0 / 8%);
+    border: none;
+    background-color: $scampi;
+    margin-left: 10px;
   }
 }

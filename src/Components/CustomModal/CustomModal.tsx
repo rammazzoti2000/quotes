@@ -20,7 +20,11 @@ export const CustomModal = ({ handleClose, show = false, title='', children }: I
         className="modal-backdrop__content"
         onClick={e => e.stopPropagation()}
         >
-        <CloseIcon className="modal-backdrop__close" onClick={handleClose} />
+        <CloseIcon
+          clickable
+          className="modal-backdrop__close"
+          onClick={handleClose}
+        />
         <header className="modal-backdrop__header">{title}</header>
         {children}
       </div>
