@@ -5,8 +5,10 @@
   grid-template-columns: repeat(1, 100%);
   grid-gap: 26px;
   width: 90%;
-  margin: 0 auto;
+  padding: 90px 0 70px;
+  margin: 0 auto 40px;
   justify-items: center;
+  z-index: 2;
 }
 
 @media only screen and (min-width: 840px) {
