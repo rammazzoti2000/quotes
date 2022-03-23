@@ -1,19 +1,17 @@
 @import '../../assets/styles/main.scss';
 
 .quotes-footer {
-  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 0;
-  top: auto;
-  width: 100%;
+  width: 90%;
   height: 30px;
   padding: 10px 20px;
   margin-top: 10px;
-  background-color: $scampi;
-  color: white;
+  background-color: $body-bg;
+  color: $txt-primary-bold;
   font-size: 15px;
   text-align: center;
-  z-index: 1;
+  border-top: 1px solid #cacaca;
+  margin: 10px auto 0;
 }
