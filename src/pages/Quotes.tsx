@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../store";
 
-import { QuotesList } from "../Components/Quotes/QuotesList/QuotesList";
+import { QuotesList } from "../components/Quotes/QuotesList/QuotesList";
 
 export const Quotes = observer(() => {
   const { quotesStore } = useStore();
@@ -12,7 +12,7 @@ export const Quotes = observer(() => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <section className="Quotes">
+    <section className="quotes">
       <QuotesList />
     </section>
     );

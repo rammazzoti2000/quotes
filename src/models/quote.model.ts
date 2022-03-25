@@ -3,8 +3,8 @@ export interface IQuote {
   authorName: string;
   body: string;
   comments: number;
-  created: string;
-  updated: string;
+  created: any;
+  updated: any;
   hashtags: string[];
   likes: number;
   quoteId: number;

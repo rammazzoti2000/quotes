@@ -13,7 +13,7 @@ export const Header = () => {
     <header className="quotes-header">
       <div className="quotes-header__user">Alexandru</div>
       <button
-        className="quotes-header__create-quote-btn"
+        className="quotes-header__add-quote"
         onClick={handleShowModal}
       >
         Add Quote
