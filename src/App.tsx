@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Footer } from './Components/Footer/Footer';
-import { Header } from './Components/Header/Header';
-import { Quotes } from './Pages/Quotes';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { Quotes } from './pages/Quotes';
 import { firestore } from './utilities/firebase';
 
 const App = () => {

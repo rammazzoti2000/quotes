@@ -151,7 +151,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     >
       <form onSubmit={handleSubmit} className="modal-form">
         <div className="modal-form__inputs">
-          <div className="modal-form__input-container">
+          <div className="modal-form__input">
             <input
               type="text"
               value={author}
@@ -165,7 +165,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
             </span>
           </div>
 
-          <div className="modal-form__input-container">
+          <div className="modal-form__input">
             <textarea
               value={quoteBody}
               onChange={handleChangeQuote}
@@ -179,7 +179,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
             </span>
           </div>
 
-          <div className="modal-form__input-container">
+          <div className="modal-form__input">
             <input
               type="text"
               value={hashtagInput}
@@ -192,10 +192,10 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
             <span className="modal-form__field-error">
                 {(displayError && error.hashtagInput)}
               </span>
-              <div className="hashtags-wrap">
+              <div className="hashtags">
                 {(hashtags || []).map((tag) =>
-                  <div className="hashtags-wrap__tag">
-                    <span className="hashtags-wrap__delete-tag" onClick={() => handleRemoveHashtag(tag)}>x</span>
+                  <div className="hashtags__tag">
+                    <span className="hashtags__delete-tag" onClick={() => handleRemoveHashtag(tag)}>x</span>
                     {tag}
                   </div>
                 )}

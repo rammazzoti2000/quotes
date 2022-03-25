@@ -1,5 +1,5 @@
 import React from "react";
-import { Comment } from "../Components/Comment";
+import { Comment } from "../components/Quotes/Comments/Comment";
 
 export const Comments = () => {
   return (

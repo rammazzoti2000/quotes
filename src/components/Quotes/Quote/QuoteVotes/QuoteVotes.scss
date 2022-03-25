@@ -1,0 +1,25 @@
+@import '../../../../assets/styles/main.scss';
+
+.quote-votes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  color: $scampi;
+  font-weight: $bold;
+  font-size: 15px;
+  background-color: $body-bg;
+  border-radius: 5px;
+
+  &__button {
+    background-color: $body-bg;
+    color: $greyish-blue;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
