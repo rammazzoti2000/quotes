@@ -9,8 +9,6 @@ import { QuoteDetails } from "./QuoteDetails/QuoteDetails";
 import { QuoteVotes } from "./QuoteVotes/QuoteVotes";
 
 export const Quote = ({ ...quote }: IQuote) => {
-  console.log(typeof quote.created, quote.created)
-
   return (
     <div className="quote">
       <QuoteVotes likes={quote.likes} />
