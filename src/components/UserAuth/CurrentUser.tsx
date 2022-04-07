@@ -1,17 +1,22 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar'
+import { auth } from '../../utilities/firebase';
 
 interface IProps {
-  displayName: string;
-  photoURL: string;
-  email: string;
-  createdAt: Date;
+  user: {
+    displayName: string;
+    photoURL: string;
+    email: string;
+    createdAt: Date;
+  },
   children?: React.ReactNode
 }
 
-export const CurrentUser = ({ displayName, photoURL, email, createdAt, children }: IProps) => {
+export const CurrentUser = ({ user, children }: IProps) => {
   dayjs.extend(calendar);
+
+  const { displayName, photoURL, email, createdAt } = user;
 
   return (
     <section className="CurrentUser">
@@ -25,15 +30,15 @@ export const CurrentUser = ({ displayName, photoURL, email, createdAt, children 
       </div>
       <div>
         <div>{children}</div>
-        <button>Sign Out</button>
+        <button onClick={() => auth.signOut()}>Sign Out</button>
       </div>
     </section>
   );
 };
 
-CurrentUser.defaultProps = {
-  displayName: 'Bill Murray',
-  email: 'billmurray@mailinator.com',
-  photoURL: 'https://www.fillmurray.com/300/300',
-  createdAt: new Date(),
-};
+// CurrentUser.defaultProps = {
+//   displayName: 'Bill Murray',
+//   email: 'billmurray@mailinator.com',
+//   photoURL: 'https://www.fillmurray.com/300/300',
+//   createdAt: new Date(),
+// };

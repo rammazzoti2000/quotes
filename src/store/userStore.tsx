@@ -5,7 +5,7 @@ export class UserStore {
   rootStore;
 
   user: any = {
-    googleUser: [],
+    googleUser: {},
     isLoading: false
   }
 
@@ -17,10 +17,13 @@ export class UserStore {
 
   async userAuthWithGoogle() {
     this.user.isLoading = true;
+
     try {
       auth.onAuthStateChanged(user => {
-        this.user = user;
-        this.user.isLoading = false;
+        this.user = {
+          googleUser: user,
+          isLoading: false
+        };
       });
     } catch (error: any) {
       console.log(error.message);

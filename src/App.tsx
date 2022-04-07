@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
@@ -6,16 +7,12 @@ import { Quotes } from './pages/Quotes';
 import { useStore } from './store';
 import { firestore } from './utilities/firebase';
 
-const App = () => {
+const App = observer(() => {
   const [comments, setComments] = useState<object[]>([]);
   // const [quotes, setQuotes] = useState<object[]>([]);
 
   const { userStore } = useStore();
   const { user } = userStore;
-
-  useEffect(() => {
-    userStore.userAuthWithGoogle();
-  }, []);
 
   let unsubscribeFromCommentsFirestore = null;
   let unsubscribeFromQuotesFirestore = null
@@ -36,19 +33,24 @@ const App = () => {
 
   // console.log({ comments, quotes })
 
+  // useEffect(() => {
+  //   userStore.userAuthWithGoogle();
+  // })
+
   useEffect(() => {
     getComments()
+    userStore.userAuthWithGoogle();
     // getQuotes()
   }, [unsubscribeFromQuotesFirestore, unsubscribeFromCommentsFirestore]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="App">
-      <Authentication user={user} loading={user?.isLoading}/>
-      {/* <Header />
+      <Header />
       <Quotes />
-      <Footer /> */}
+      <Authentication user={user.googleUser} loading={user.isLoading} />
+      <Footer />
     </div>
   );
-}
+});
 
 export default App;

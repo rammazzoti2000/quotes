@@ -1,12 +1,17 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { useStore } from '../../store';
 import { signInWithGoogle } from '../../utilities/firebase';
 
-export default function SignIn() {
+export const SignIn = () => {
+  // const { userStore } = useStore();
+  const handleSignIn = async () => {
+    await signInWithGoogle();
+  }
 
   return (
     <div className='quotes-signin'>
-      <input type="submit" value="Sign In" />
-      <button onClick={() => signInWithGoogle()}>Sign In With Google</button>
+      <button onClick={handleSignIn}>Sign In With Google</button>
     </div>
   );
 }
