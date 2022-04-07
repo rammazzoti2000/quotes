@@ -15,10 +15,60 @@
   box-shadow: 0px 4px 5px -3px rgb(0 0 0 / 50%);
   background-color: $scampi;
 
+  &__dropdown {
+    position: relative;
+    cursor: pointer;
+
+    .quotes-header__dropdown--content {
+      display: none;
+      position: absolute;
+      background-color: $scampi;
+      min-width: 160px;
+      box-shadow: 0px 20px 12px -7px rgb(0 0 0 / 20%);
+      padding: 12px 16px;
+      z-index: 1;
+      top: 94px;
+      border-radius: 5px;
+
+      .dropdown-arrow::after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        top: -28px;
+        bottom: 0;
+        left: 9px;
+        border-right: 14px solid transparent;
+        border-left: 14px solid transparent;
+        border-top: 14px solid transparent;
+        border-bottom: 14px solid $scampi;
+      }
+    }
+
+    &:hover {
+      .quotes-header__dropdown--content {
+        display: block;
+      }
+    }
+  }
+
   &__user {
     font-size: 20px;
     font-weight: $bold;
     color: white;
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 26px 0;
+
+    & > img {
+      width: 45px;
+      height: auto;
+      margin-right: 12px;
+      border-radius: 50%;
+    }
   }
 
   &__add-quote {
@@ -44,5 +94,4 @@
       color: red;
     }
   }
-
 }

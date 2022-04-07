@@ -1,9 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { Footer } from './components/Footer/Footer';
-import { Header } from './components/Header/Header';
-import { Authentication } from './components/UserAuth/Authentication';
-import { Quotes } from './pages/Quotes';
+import { AppLayout } from './AppLayout';
 import { useStore } from './store';
 import { firestore } from './utilities/firebase';
 
@@ -12,7 +9,6 @@ const App = observer(() => {
   // const [quotes, setQuotes] = useState<object[]>([]);
 
   const { userStore } = useStore();
-  const { user } = userStore;
 
   let unsubscribeFromCommentsFirestore = null;
   let unsubscribeFromQuotesFirestore = null
@@ -45,10 +41,7 @@ const App = observer(() => {
 
   return (
     <div className="App">
-      <Header />
-      <Quotes />
-      <Authentication user={user.googleUser} loading={user.isLoading} />
-      <Footer />
+      <AppLayout />
     </div>
   );
 });
