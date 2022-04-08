@@ -29,7 +29,8 @@
 
   &__user--name {
     font-weight: $bold;
-    color: $txt-primary-bold
+    color: $txt-primary-bold;
+    text-transform: lowercase;
   }
 
   &__headshot {

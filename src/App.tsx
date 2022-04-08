@@ -29,13 +29,13 @@ const App = observer(() => {
 
   // console.log({ comments, quotes })
 
-  // useEffect(() => {
-  //   userStore.userAuthWithGoogle();
-  // })
+  useEffect(() => {
+    userStore.userAuthWithGoogle();
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     getComments()
-    userStore.userAuthWithGoogle();
+    // userStore.userAuthWithGoogle();
     // getQuotes()
   }, [unsubscribeFromQuotesFirestore, unsubscribeFromCommentsFirestore]) // eslint-disable-line react-hooks/exhaustive-deps
 

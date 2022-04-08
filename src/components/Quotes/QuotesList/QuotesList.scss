@@ -11,13 +11,14 @@
   z-index: 2;
 }
 
-@media only screen and (min-width: 840px) {
+@media only screen and (min-width: 974px) {
   .quotes-list {
     grid-template-columns: repeat(2, 48%);
+    width: 96%;
   }
 }
 
-@media only screen and (min-width: 1250px) {
+@media only screen and (min-width: 1460px) {
   .quotes-list {
     grid-template-columns: repeat(3, 32%);
   }

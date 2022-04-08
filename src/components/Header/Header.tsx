@@ -4,6 +4,8 @@ import { useStore } from "../../store";
 import { auth } from "../../utilities/firebase";
 import { AddQuote } from "../AddQuote/AddQuote";
 import { SignIn } from "../UserAuth/SignIn";
+import headshotImg from '../../assets/images/png/headshot.png';
+
 import './Header.scss';
 
 export const Header = observer(() => {
@@ -23,11 +25,11 @@ export const Header = observer(() => {
         <div className="quotes-header__dropdown">
           <div className="quotes-header__user">
             <img
-              src={googleUser?.photoURL}
+              src={googleUser.photoURL || headshotImg}
               className="quote-header__headshot"
               alt="user profile headshot"
             />
-            {googleUser?.displayName}
+            {googleUser.displayName || "User"}
           </div>
           <span className="quotes-header__dropdown--content">
             <span className="dropdown-arrow"></span>

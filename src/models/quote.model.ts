@@ -1,6 +1,7 @@
 export interface IQuote {
   authorId: number;
   authorName: string;
+  headshot: string;
   body: string;
   comments: number;
   created: any;
