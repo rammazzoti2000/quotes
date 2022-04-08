@@ -11,23 +11,21 @@ interface IProps {
 };
 
 export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) => {
-  const [author, setAuthor] = useState('');
   const [hashtagInput, setHashtagInput] = useState('');
   const [hashtags, setHashtags] = useState<string[]>([]);
   const [quoteBody, setQuoteBody] = useState('');
 
   const [displayError, setDisplayError] = useState(false);
   const [error, setError] = useState({
-    author: '',
     hashtagInput: '',
     quoteBody: '',
   });
 
-  const { quotesStore } = useStore();
+  const { quotesStore, userStore } = useStore();
+  const { user } = userStore;
 
   const cleanErrors = () => {
     setError({
-      author: '',
       hashtagInput: '',
       quoteBody: '',
     });
@@ -35,7 +33,6 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
   };
 
   const cleanData = () => {
-    setAuthor('');
     setHashtagInput('');
     setQuoteBody('');
   };
@@ -45,15 +42,9 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
 
     let shouldDisplay = false;
     const tempError = {
-      author: '',
       hashtagInput: '',
       quoteBody: '',
     };
-
-    if (author.trim() === '') {
-      tempError.author = 'Please fill in Author.';
-      shouldDisplay = true;
-    }
 
     if (quoteBody.trim() === '') {
       tempError.quoteBody = 'Please fill in Quote.';
@@ -83,7 +74,8 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
 
     const quote: any = {
       authorId: 2,
-      authorName: author,
+      authorName: user.googleUser.displayName.replace(/\s/g, '_').toLowerCase(),
+      headshot: user.googleUser.photoURL,
       body: quoteBody,
       comments: 0,
       created: new Date(),
@@ -98,11 +90,6 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     cleanErrors();
     setHashtags([]);
     setShowModal(false);
-  };
-
-  const handleChangeAuthor = (event: any) => {
-    setAuthor(event.target.value);
-    cleanErrors();
   };
 
   const handleChangeHashtags = (event: any) => {
@@ -151,19 +138,6 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     >
       <form onSubmit={handleSubmit} className="modal-form">
         <div className="modal-form__inputs">
-          <div className="modal-form__input">
-            <input
-              type="text"
-              value={author}
-              onChange={handleChangeAuthor}
-            />
-            <label className={author && 'filled'}>
-              Author
-            </label>
-            <span className="modal-form__field-error">
-              {displayError && error.author}
-            </span>
-          </div>
 
           <div className="modal-form__input">
             <textarea

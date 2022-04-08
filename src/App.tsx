@@ -1,12 +1,14 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { Footer } from './components/Footer/Footer';
-import { Header } from './components/Header/Header';
-import { Quotes } from './pages/Quotes';
+import { AppLayout } from './AppLayout';
+import { useStore } from './store';
 import { firestore } from './utilities/firebase';
 
-const App = () => {
+const App = observer(() => {
   const [comments, setComments] = useState<object[]>([]);
   // const [quotes, setQuotes] = useState<object[]>([]);
+
+  const { userStore } = useStore();
 
   let unsubscribeFromCommentsFirestore = null;
   let unsubscribeFromQuotesFirestore = null
@@ -28,17 +30,20 @@ const App = () => {
   // console.log({ comments, quotes })
 
   useEffect(() => {
+    userStore.userAuthWithGoogle();
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     getComments()
+    // userStore.userAuthWithGoogle();
     // getQuotes()
   }, [unsubscribeFromQuotesFirestore, unsubscribeFromCommentsFirestore]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="App">
-      <Header />
-      <Quotes />
-      <Footer />
+      <AppLayout />
     </div>
   );
-}
+});
 
 export default App;
