@@ -1,6 +1,8 @@
-import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
 import { useStore } from "../../store";
+import { v4 as uuidv4 } from 'uuid';
+
 import { CustomModal } from "../CustomModal/CustomModal";
 
 import './AddQuote.scss';
@@ -73,9 +75,11 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     }
 
     const quote: any = {
-      authorId: 2,
-      authorName: user.googleUser.displayName.replace(/\s/g, '_').toLowerCase(),
-      headshot: user.googleUser.photoURL,
+      user: {
+        authorId: user.googleUser.uid,
+        authorName: user.googleUser.displayName.replace(/\s/g, '_').toLowerCase(),
+        headshot: user.googleUser.photoURL,
+      },
       body: quoteBody,
       comments: 0,
       created: new Date(),
@@ -168,7 +172,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
               </span>
               <div className="hashtags">
                 {(hashtags || []).map((tag) =>
-                  <div className="hashtags__tag">
+                  <div className="hashtags__tag" key={uuidv4()}>
                     <span className="hashtags__delete-tag" onClick={() => handleRemoveHashtag(tag)}>x</span>
                     {tag}
                   </div>

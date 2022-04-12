@@ -30,6 +30,10 @@ export class UserStore {
       this.user.isLoading = false;
     }
   }
+
+ getIsSameUser(authorId: string) {
+    return this.user.googleUser && this.user.googleUser.uid === authorId
+  }
 }
 
 export default UserStore;
