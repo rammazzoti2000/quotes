@@ -73,7 +73,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     }
 
     const quote: any = {
-      authorId: 2,
+      authorId: user.googleUser.uid,
       authorName: user.googleUser.displayName.replace(/\s/g, '_').toLowerCase(),
       headshot: user.googleUser.photoURL,
       body: quoteBody,

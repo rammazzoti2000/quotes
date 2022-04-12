@@ -1,5 +1,5 @@
 export interface IQuote {
-  authorId: number;
+  authorId: string;
   authorName: string;
   headshot: string;
   body: string;

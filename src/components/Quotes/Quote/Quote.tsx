@@ -9,8 +9,12 @@ import { QuoteDetails } from "./QuoteDetails/QuoteDetails";
 import { QuoteVotes } from "./QuoteVotes/QuoteVotes";
 
 import './Quote.scss';
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../../store";
 
-export const Quote = ({ ...quote }: IQuote) => {
+export const Quote = observer(({ ...quote }: IQuote) => {
+  const { userStore } = useStore();
+
   return (
     <div className="quote">
       <div className="quote__content">
@@ -25,8 +29,10 @@ export const Quote = ({ ...quote }: IQuote) => {
       </div>
       <div className="quote__bottom">
         <span className="quote__hashtags">{quote.hashtags.map(item => `#${item} `)}</span>
-        <img className="quote__delete" src={deleteIcon} alt=" delete quote" />
+        {userStore.getIsSameUser(quote.authorId) &&
+          <img className="quote__delete" src={deleteIcon} alt=" delete quote" />
+        }
       </div>
     </div>
   );
-};
+});
