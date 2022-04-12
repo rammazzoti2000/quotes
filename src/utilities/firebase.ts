@@ -27,4 +27,6 @@ export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const signOut = () => auth.signOut();
 
+// console.log(firebase.auth().currentUser?.photoURL === firebase.auth().currentUser?.providerData[0]?.photoURL)
+
 export default firebase;
