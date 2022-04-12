@@ -1,6 +1,6 @@
 import React from 'react'
-import { signInWithGoogle } from '../../utilities/firebase';
-import googleIcon from '../../assets/images/svg/google-icon.svg'
+import { signInWithGoogle } from '../../../utilities/firebase';
+import googleIcon from '../../../assets/images/svg/google-icon.svg';
 
 import './SignIn.scss';
 

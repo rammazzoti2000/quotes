@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useStore } from "../../store";
 import { auth } from "../../utilities/firebase";
 import { AddQuote } from "../AddQuote/AddQuote";
-import { SignIn } from "../UserAuth/SignIn";
+import { SignIn } from "../UserAuth/SignIn/SignIn";
 import headshotImg from '../../assets/images/png/headshot.png';
 
 import './Header.scss';

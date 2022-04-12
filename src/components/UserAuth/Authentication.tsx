@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CurrentUser } from './CurrentUser';
-import { SignIn } from './SignIn';
+import { SignIn } from './SignIn/SignIn';
 
 interface IProps {
   user: any;

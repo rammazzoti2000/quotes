@@ -6,7 +6,6 @@ import { firestore } from './utilities/firebase';
 
 const App = observer(() => {
   const [comments, setComments] = useState<object[]>([]);
-  // const [quotes, setQuotes] = useState<object[]>([]);
 
   const { userStore } = useStore();
 
@@ -20,23 +19,12 @@ const App = observer(() => {
     });
   }
 
-  // const getQuotes = async () => {
-  //   unsubscribeFromQuotesFirestore = await firestore.collection('quotes').onSnapshot(snapshot => {
-  //     const quotes = snapshot.docs.map(doc => doc.data())
-  //     setQuotes(quotes)
-  //   });
-  // }
-
-  // console.log({ comments, quotes })
-
   useEffect(() => {
     userStore.userAuthWithGoogle();
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     getComments()
-    // userStore.userAuthWithGoogle();
-    // getQuotes()
   }, [unsubscribeFromQuotesFirestore, unsubscribeFromCommentsFirestore]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
