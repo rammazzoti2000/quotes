@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../../store";
 
 import headshotImg from '../../../assets/images/png/headshot.png';
 import replyIcon from '../../../assets/images/svg/reply.svg';
@@ -9,28 +11,31 @@ import { QuoteDetails } from "./QuoteDetails/QuoteDetails";
 import { QuoteVotes } from "./QuoteVotes/QuoteVotes";
 
 import './Quote.scss';
-import { observer } from "mobx-react-lite";
-import { useStore } from "../../../store";
 
 export const Quote = observer(({ ...quote }: IQuote) => {
-  const { userStore } = useStore();
+  const { userStore, quotesStore } = useStore();
+  const { user } = quote;
+
+  const handleDelete = async () => {
+    await quotesStore.deleteQuote(quote.id)
+  }
 
   return (
     <div className="quote">
       <div className="quote__content">
         <QuoteVotes likes={quote.likes} />
         <QuoteDetails
-          headshotImg={quote.headshot || headshotImg}
+          headshotImg={user.headshot || headshotImg}
           replyIcon={replyIcon}
-          authorName={quote.authorName}
+          authorName={user.authorName}
           created={quote.created}
           body={quote.body}
         />
       </div>
       <div className="quote__bottom">
         <span className="quote__hashtags">{quote.hashtags.map(item => `#${item} `)}</span>
-        {userStore.getIsSameUser(quote.authorId) &&
-          <img className="quote__delete" src={deleteIcon} alt=" delete quote" />
+        {userStore.getIsSameUser(user.authorId) &&
+          <img onClick={handleDelete} className="quote__delete" src={deleteIcon} alt=" delete quote" />
         }
       </div>
     </div>

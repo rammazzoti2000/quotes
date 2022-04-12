@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx"
 import { IQuote } from "../models/quote.model";
+import { collectIdsAndDocs } from "../utilities/collectIdsAndDocs";
 import { firestore as fireStore } from '../utilities/firebase';
 
 class QuotesStore {
@@ -17,11 +18,11 @@ class QuotesStore {
   async getQuotes() {
     try {
       fireStore.collection('quotes').onSnapshot(snapshot => {
-        const quotes: any = snapshot.docs.map(doc => doc.data());
+        const quotes: any = snapshot.docs.map(collectIdsAndDocs);
         this.quotes = quotes;
       });
     } catch (error: any) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
@@ -42,6 +43,15 @@ class QuotesStore {
       await fireStore.collection('quotes').doc(quote.id).set(quote);
     } catch (error: any) {
       console.log(error.message)
+    }
+  }
+
+  async deleteQuote(id: number) {
+    try {
+      const quoteRef = fireStore.doc(`quotes/${id}`);
+      await quoteRef.delete();
+    } catch (error: any) {
+      console.log(error.message);
     }
   }
 }

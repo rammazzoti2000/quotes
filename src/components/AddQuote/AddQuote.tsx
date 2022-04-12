@@ -1,6 +1,7 @@
-import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
 import { useStore } from "../../store";
+
 import { CustomModal } from "../CustomModal/CustomModal";
 
 import './AddQuote.scss';
@@ -73,9 +74,11 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
     }
 
     const quote: any = {
-      authorId: user.googleUser.uid,
-      authorName: user.googleUser.displayName.replace(/\s/g, '_').toLowerCase(),
-      headshot: user.googleUser.photoURL,
+      user: {
+        authorId: user.googleUser.uid,
+        authorName: user.googleUser.displayName.replace(/\s/g, '_').toLowerCase(),
+        headshot: user.googleUser.photoURL,
+      },
       body: quoteBody,
       comments: 0,
       created: new Date(),
