@@ -46,7 +46,7 @@ class QuotesStore {
     }
   }
 
-  async deleteQuote(id: number) {
+  async deleteQuote(id: string) {
     try {
       const quoteRef = fireStore.doc(`quotes/${id}`);
       await quoteRef.delete();

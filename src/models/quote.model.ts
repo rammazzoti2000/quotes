@@ -1,5 +1,5 @@
 export interface IQuote {
- id: number;
+  id: string;
   body: string;
   comments: number;
   created: any;
