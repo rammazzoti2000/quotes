@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../store";
 
@@ -9,15 +9,22 @@ import deleteIcon from '../../../assets/images/svg/delete-icon.svg';
 import { IQuote } from "../../../models/quote.model";
 import { QuoteDetails } from "./QuoteDetails/QuoteDetails";
 import { QuoteVotes } from "./QuoteVotes/QuoteVotes";
+import { DeleteQuote } from "../../DeleteQuote/DeleteQuote";
 
 import './Quote.scss';
 
 export const Quote = observer(({ ...quote }: IQuote) => {
+  const [showModal, setShowModal] = useState(false);
+
   const { userStore, quotesStore } = useStore();
   const { user } = quote;
 
   const handleDelete = async () => {
     await quotesStore.deleteQuote(quote.id)
+  }
+
+  const handleShowModal = () => {
+    setShowModal(!showModal)
   }
 
   return (
@@ -35,9 +42,15 @@ export const Quote = observer(({ ...quote }: IQuote) => {
       <div className="quote__bottom">
         <span className="quote__hashtags">{quote.hashtags.map(item => `#${item} `)}</span>
         {userStore.getIsSameUser(user.authorId) &&
-          <img onClick={handleDelete} className="quote__delete" src={deleteIcon} alt=" delete quote" />
+          <img onClick={handleShowModal} className="quote__delete" src={deleteIcon} alt="delete quote" />
         }
       </div>
+
+      <DeleteQuote
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 });

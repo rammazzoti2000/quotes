@@ -1,0 +1,46 @@
+@import '../../assets/styles/main.scss';
+
+.quote__confirm {
+  &--warning {
+    font-size: 16px;
+    margin: 0 0 20px;
+    color: $txt-primary-bold;
+  }
+
+  &--btns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .quote__action--btn {
+    cursor: pointer;
+    padding: 8px 10px 6px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: $bold;
+  }
+
+  &--cancel {
+    background-color: $scampi;
+  }
+
+  &--delete {
+    background-color: $burnt-sienna;
+  }
+
+  &--cancel,
+  &--delete {
+    color: $white;
+  }
+
+  &--cancel:hover {
+    background-color: rgb(96 98 154 / 88%);
+  }
+
+  &--delete:hover {
+    background-color: rgb(236 104 103 / 88%);
+  }
+}
