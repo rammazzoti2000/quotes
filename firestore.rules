@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /quotes/{quoteId} {
+      allow read;
+      allow create, update: if request.resource.data.user.authorName != '' &&
+      	request.resource.data.body != '' && request.resource.data.hashtags.size() > 0;
+      // allow create, update: if request.resource.data.keys.hasAll(['authorName', 'body', 'hashtags']);
+      allow delete: if request.auth.uid == resource.data.user.authorId
+    }
+    match /comments/{commentId} {
+    	allow read;
+      allow create, update: if request.auth.uid != null && request.resource.data.body != '';
+      allow delete: if request.resource.data.role != 'guest';
+    }
+  }
+}
