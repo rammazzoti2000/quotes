@@ -104,6 +104,30 @@ class QuotesStore {
       console.log(error.message);
     }
   }
+
+  async setDownVote(quoteId: string, userId: string) {
+    const quoteRef = fireStore.doc(`quotes/${quoteId}`);
+
+    try {
+      if (userId) {
+        await quoteRef.update({
+          likes: firebase.firestore.FieldValue.arrayUnion({
+            userId,
+            liked: false
+          }),
+        })
+  
+        await quoteRef.update({
+          likes: firebase.firestore.FieldValue.arrayRemove({
+            userId,
+            liked: true
+          }),
+        })
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
 }
 
 export default QuotesStore;

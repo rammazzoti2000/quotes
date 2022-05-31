@@ -17,6 +17,10 @@ export const QuoteVotes = observer(({ likes = 0, quoteId, userId }: IProps) => {
     await quotesStore.setUpVote(quoteId, userId);
   }
 
+  const handleDownVote = async () => {
+    await quotesStore.setDownVote(quoteId, userId);
+  }
+
   return (
     <div className="quote-votes">
       <button
@@ -27,7 +31,13 @@ export const QuoteVotes = observer(({ likes = 0, quoteId, userId }: IProps) => {
         +
       </button>
       {likes}
-      <button className="quote-votes__button quote-votes__button--minus" type="button">-</button>
+      <button
+        className="quote-votes__button quote-votes__button--minus"
+        type="button"
+        onClick={handleDownVote}
+      >
+        -
+      </button>
     </div>
   );
 });
