@@ -84,7 +84,7 @@ export const AddQuote = observer(({ showModal = false, setShowModal }: IProps) =
       comments: 0,
       created: new Date(),
       hashtags,
-      likes: 0,
+      likes: [],
       role: 'user',
       updated: new Date()
     }

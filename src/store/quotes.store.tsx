@@ -59,7 +59,7 @@ class QuotesStore {
   getVotes(quoteId: string) {
     const index = this.quotes.findIndex(item => item.id === quoteId);
 
-    return this.quotes[index].likes.filter((item: any) => item?.liked).length;
+    return (this.quotes[index].likes || []).filter((item: any) => item?.liked).length;
   }
 
   async setUpVote(quoteId: string, userId: string) {
