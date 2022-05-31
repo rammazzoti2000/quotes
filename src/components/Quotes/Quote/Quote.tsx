@@ -12,12 +12,19 @@ import { QuoteVotes } from "./QuoteVotes/QuoteVotes";
 import { DeleteQuote } from "../../DeleteQuote/DeleteQuote";
 
 import './Quote.scss';
+import { computed } from "mobx";
 
-export const Quote = observer(({ ...quote }: IQuote) => {
+interface IProps {
+  quote: IQuote;
+}
+
+export const Quote = observer(({ quote }: IProps) => {
   const [showModal, setShowModal] = useState(false);
 
   const { userStore, quotesStore } = useStore();
   const { user } = quote;
+  const { user: authUser } = userStore
+
 
   const handleDelete = async () => {
     await quotesStore.deleteQuote(quote.id)
@@ -27,10 +34,16 @@ export const Quote = observer(({ ...quote }: IQuote) => {
     setShowModal(!showModal)
   }
 
+  const votes = computed(() => quotesStore.getVotes(quote.id)).get();
+
   return (
     <div className="quote">
       <div className="quote__content">
-        <QuoteVotes likes={quote.likes} />
+        <QuoteVotes
+          likes={votes}
+          quoteId={quote.id}
+          userId={authUser.googleUser.uid}
+        />
         <QuoteDetails
           headshotImg={user.headshot || headshotImg}
           replyIcon={replyIcon}

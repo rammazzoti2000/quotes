@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx"
 import { IQuote } from "../models/quote.model";
 import { collectIdsAndDocs } from "../utilities/collectIdsAndDocs";
 import { firestore as fireStore } from '../utilities/firebase';
+import firebase from "firebase/compat/app";
 
 class QuotesStore {
   rootStore;
@@ -50,6 +51,53 @@ class QuotesStore {
     try {
       const quoteRef = fireStore.doc(`quotes/${id}`);
       await quoteRef.delete();
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
+
+  getVotes(quoteId: string) {
+    const index = this.quotes.findIndex(item => item.id === quoteId);
+
+    return this.quotes[index].likes.filter((item: any) => item?.liked).length;
+  }
+
+  async setUpVote(quoteId: string, userId: string) {
+    const quoteIndex = this.quotes.findIndex(item => item.id === quoteId);
+    const quote = this.quotes[quoteIndex];
+    const quoteVoteIndex = quote.likes.findIndex(vote => vote.userId === userId);
+
+    try {
+      if (!this.quotes[quoteIndex].likes.length || quoteVoteIndex === -1) {
+        await fireStore.collection('quotes').doc(quote.id).set({
+          ...quote,
+          likes: [
+            ...quote.likes,
+            {
+              userId,
+              liked: true
+            }
+          ]
+        });
+
+        return;
+      }
+
+      const quoteRef = fireStore.doc(`quotes/${quoteId}`);
+
+      await quoteRef.update({
+        likes: firebase.firestore.FieldValue.arrayUnion({
+          userId,
+          liked: true
+        }),
+      })
+
+      await quoteRef.update({
+        likes: firebase.firestore.FieldValue.arrayRemove({
+          userId,
+          liked: false
+        }),
+      })
     } catch (error: any) {
       console.log(error.message);
     }
