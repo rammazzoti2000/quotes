@@ -68,7 +68,7 @@ class QuotesStore {
     const quoteVoteIndex = quote.likes.findIndex(vote => vote.userId === userId);
 
     try {
-      if (!this.quotes[quoteIndex].likes.length || quoteVoteIndex === -1) {
+      if (userId && (!this.quotes[quoteIndex].likes.length || quoteVoteIndex === -1)) {
         await fireStore.collection('quotes').doc(quote.id).set({
           ...quote,
           likes: [
@@ -85,19 +85,21 @@ class QuotesStore {
 
       const quoteRef = fireStore.doc(`quotes/${quoteId}`);
 
-      await quoteRef.update({
-        likes: firebase.firestore.FieldValue.arrayUnion({
-          userId,
-          liked: true
-        }),
-      })
-
-      await quoteRef.update({
-        likes: firebase.firestore.FieldValue.arrayRemove({
-          userId,
-          liked: false
-        }),
-      })
+      if (userId) {
+        await quoteRef.update({
+          likes: firebase.firestore.FieldValue.arrayUnion({
+            userId,
+            liked: true
+          }),
+        })
+  
+        await quoteRef.update({
+          likes: firebase.firestore.FieldValue.arrayRemove({
+            userId,
+            liked: false
+          }),
+        })
+      }
     } catch (error: any) {
       console.log(error.message);
     }

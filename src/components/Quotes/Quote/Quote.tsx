@@ -42,7 +42,7 @@ export const Quote = observer(({ quote }: IProps) => {
         <QuoteVotes
           likes={votes}
           quoteId={quote.id}
-          userId={authUser.googleUser.uid}
+          userId={authUser.googleUser?.uid}
         />
         <QuoteDetails
           headshotImg={user.headshot || headshotImg}
