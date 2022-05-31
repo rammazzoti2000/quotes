@@ -11,7 +11,7 @@ export const QuotesList = observer(() => {
   return (
     <div className="quotes-list">
       {quotes.map((quote) => (
-        <Quote {...quote} key={quote.id} />
+        <Quote quote={quote} key={quote.id} />
       ))}
     </div>
   );

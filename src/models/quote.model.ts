@@ -5,7 +5,10 @@ export interface IQuote {
   created: any;
   updated: any;
   hashtags: string[];
-  likes: number;
+  likes: {
+    userId: string,
+    liked: boolean
+  }[];
   role: string;
   user: {
     authorId: string;
